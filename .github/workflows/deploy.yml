@@ -1,0 +1,82 @@
+name: Deploy tema Garuda ke 7 desa
+
+# Men-deploy tema Garuda (garuda + 9 varian ternama) ke ketujuh instalasi desa
+# di server (rsync via SSH, tanpa Docker). Berjalan otomatis saat berkas tema
+# berubah pada branch main, atau dapat dipicu manual (workflow_dispatch).
+#
+# CAKUPAN SENGAJA DIBATASI PADA TEMA.
+# Ketujuh desa menjalankan EDISI OpenSID yang berbeda-beda (mis. karangsong/
+# pekandangan/plumbon punya modul bansos/stunting/DPT; dukuh punya modul
+# analisis). Men-sinkronkan seluruh pohon kode aplikasi lewat satu sumber akan
+# MENURUNKAN/merusak edisi yang berbeda. Tema bersifat mandiri & netral-versi,
+# sehingga aman dideploy ke semua desa. Perbaikan kode dilakukan terpisah
+# (lihat DEPLOY.md).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'desa/themes/garuda/**'
+      - 'desa/themes/garuda-ternama-*/**'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-tema
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: ${{ matrix.domain }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        domain:
+          - pabeanudik.desa.id
+          - singaraja-indramayu.desa.id
+          - karangsong-indramayu.desa.id
+          - tambak-indramayu.desa.id
+          - dukuh-indramayu.desa.id
+          - pekandangan-indramayu.desa.id
+          - plumbon-indramayu.desa.id
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Siapkan kunci SSH
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "${{ secrets.SSH_PORT }}" -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Rsync tema Garuda
+        run: |
+          DEST="domains/${{ matrix.domain }}/public_html/desa/themes"
+          SSHCMD="ssh -i ~/.ssh/deploy_key -p ${{ secrets.SSH_PORT }} -o IdentitiesOnly=yes"
+          for t in garuda garuda-ternama-1 garuda-ternama-2 garuda-ternama-3 garuda-ternama-4 \
+                   garuda-ternama-5 garuda-ternama-6 garuda-ternama-7 garuda-ternama-8 garuda-ternama-9; do
+            echo "::group::rsync $t"
+            rsync -az --delete -e "$SSHCMD" \
+              "desa/themes/$t/" \
+              "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:$DEST/$t/"
+            echo "::endgroup::"
+          done
+
+      - name: Perbaiki izin + bersihkan cache tema
+        run: |
+          ROOT="domains/${{ matrix.domain }}/public_html"
+          ssh -i ~/.ssh/deploy_key -p "${{ secrets.SSH_PORT }}" -o IdentitiesOnly=yes \
+            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" "
+              find $ROOT/desa/themes/garuda* -type d -exec chmod 755 {} + ;
+              find $ROOT/desa/themes/garuda* -type f -exec chmod 644 {} + ;
+              rm -rf $ROOT/storage/framework/cache/data/* 2>/dev/null;
+              true
+            "
+
+      - name: Verifikasi situs merespons
+        run: |
+          code=$(curl -s -o /dev/null -w '%{http_code}' -m 25 "https://${{ matrix.domain }}/")
+          echo "https://${{ matrix.domain }}/ -> HTTP $code"
+          test "$code" = "200"
