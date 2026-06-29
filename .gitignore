@@ -1,0 +1,47 @@
+# =====================================================================
+# OpenSID (Dukuh dkk) — daftar abaikan untuk repo PUBLIK.
+# Tujuan utama: JANGAN PERNAH commit data warga (PII), kredensial, kunci
+# enkripsi, atau dump database. Tema kustom di desa/themes/ TETAP di-commit.
+# =====================================================================
+
+# --- Dependensi & artefak build (di-rebuild di server via composer) ---
+/vendor/
+/node_modules/
+/storage/app/vendor/
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/logs/*
+/storage/*.js
+error_log
+*.log
+
+# --- Dump / cadangan database (berisi data warga) ---
+*.sql
+*.sql.gz
+*.sql.zip
+
+# --- Runtime per-desa: kredensial, kunci, upload, arsip, dsb. ---
+# Abaikan SELURUH isi desa/ KECUALI folder tema kustom.
+/desa/*
+!/desa/themes/
+
+# --- Cadangan inkremental (data runtime) ---
+/backup_inkremental/*
+!/backup_inkremental/.gitignore
+!/backup_inkremental/index.html
+
+# --- Artefak hosting yang tertinggal ---
+/dukuh-indramayu.desa.id/
+
+# --- Lingkungan / rahasia lain ---
+.env
+.env.*
+**/app_key
+
+# --- Berkas OS / editor ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

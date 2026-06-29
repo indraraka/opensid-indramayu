@@ -1,0 +1,19 @@
+# OpenSID — konfigurasi lokal (Laragon / Apache 2.4 + mod_fcgid)
+# Tujuan: menghapus index.php dari URL, TANPA memaksa HTTPS.
+#
+# Catatan teknis: dengan mod_fcgid (php-cgi), pola lama "index.php/$1"
+# memakai PATH_INFO dan sering gagal dengan "No input file specified".
+# Karena OpenSID memakai uri_protocol = REQUEST_URI (donjo-app/config/config.php),
+# semua request cukup diarahkan ke index.php polos — CI tetap membaca
+# rute dari REQUEST_URI asli (mis. /first, /siteman).
+
+RewriteEngine On
+RewriteBase /
+
+# Biarkan file & folder yang benar-benar ada dilayani langsung (aset, gambar, dst.)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [L]
+
+# Jangan tampilkan daftar isi direktori
+Options -Indexes

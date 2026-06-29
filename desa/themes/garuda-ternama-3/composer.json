@@ -1,0 +1,20 @@
+{
+    "name": "themes/garuda-ternama-3-rusa",
+    "type": "library",
+    "version": "1.0.0",
+    "description": "Garuda Ternama 3 — Variasi Rusa khas Indramayu di tepi hutan; nuansa rimba & emas.",
+    "homepage": "https://opensid.or.id",
+    "license": "GPL-3.0-or-later",
+    "keywords": [
+        "Themes",
+        "OpenSID",
+        "Garuda",
+        "Garuda Ternama"
+    ],
+    "authors": [
+        {
+            "name": "Indra Kusumah",
+            "email": "indrakusumah1@gmail.com"
+        }
+    ]
+}

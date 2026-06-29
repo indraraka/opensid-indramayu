@@ -1,0 +1,20 @@
+{
+    "name": "themes/garuda-ternama-7-bahari",
+    "type": "library",
+    "version": "1.0.0",
+    "description": "Garuda Ternama 7 — Variasi Bahari Biru: jangkar, perahu layar, & camar laut.",
+    "homepage": "https://opensid.or.id",
+    "license": "GPL-3.0-or-later",
+    "keywords": [
+        "Themes",
+        "OpenSID",
+        "Garuda",
+        "Garuda Ternama"
+    ],
+    "authors": [
+        {
+            "name": "Indra Kusumah",
+            "email": "indrakusumah1@gmail.com"
+        }
+    ]
+}

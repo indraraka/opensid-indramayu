@@ -1,0 +1,19 @@
+{
+    "name": "themes/garuda",
+    "type": "library",
+    "version": "1.0.0",
+    "description": "Garuda Theme - Tema OpenSID modern & responsive",
+    "homepage": "https://opensid.or.id",
+    "license": "GPL-3.0-or-later",
+    "keywords": [
+        "Themes",
+        "OpenSID",
+        "Garuda"
+    ],
+    "authors": [
+        {
+            "name": "Indra Kusumah",
+            "email": "indrakusumah1@gmail.com"
+        }
+    ]
+}

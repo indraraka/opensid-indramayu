@@ -1,0 +1,20 @@
+{
+    "name": "themes/garuda-ternama-9-indramayu-raya",
+    "type": "library",
+    "version": "1.0.0",
+    "description": "Garuda Ternama 9 — Variasi Indramayu Raya: lambang gabungan rusa, mangga, & ombak.",
+    "homepage": "https://opensid.or.id",
+    "license": "GPL-3.0-or-later",
+    "keywords": [
+        "Themes",
+        "OpenSID",
+        "Garuda",
+        "Garuda Ternama"
+    ],
+    "authors": [
+        {
+            "name": "Indra Kusumah",
+            "email": "indrakusumah1@gmail.com"
+        }
+    ]
+}

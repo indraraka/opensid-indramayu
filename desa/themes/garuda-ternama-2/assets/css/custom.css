@@ -1,0 +1,452 @@
+/*! Garuda Theme — design layer (di atas Tailwind esensi base) | GPL-3.0 */
+
+/* ============================================================
+   1. FONT (self-hosted, tampil walau offline)
+   ============================================================ */
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(../fonts/inter-400.woff2) format('woff2');}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(../fonts/inter-500.woff2) format('woff2');}
+@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(../fonts/inter-600.woff2) format('woff2');}
+@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(../fonts/inter-700.woff2) format('woff2');}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:600;font-display:swap;src:url(../fonts/plus-jakarta-sans-600.woff2) format('woff2');}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:700;font-display:swap;src:url(../fonts/plus-jakarta-sans-700.woff2) format('woff2');}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:800;font-display:swap;src:url(../fonts/plus-jakarta-sans-800.woff2) format('woff2');}
+
+/* ============================================================
+   2. DESIGN TOKENS
+   ============================================================ */
+:root{
+  --grd-font-display:"Plus Jakarta Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+  --grd-font-body:"Inter",system-ui,"Segoe UI",Roboto,Arial,sans-serif;
+
+  /* Netral & peran (mode terang) */
+  --grd-bg:#F6F8F7;
+  --grd-surface:#FFFFFF;
+  --grd-surface-2:#EDF1EF;
+  --grd-border:#DCE3E0;
+  --grd-text:#232825;
+  --grd-text-muted:#6B756F;
+  --grd-on-primary:#FFFFFF;
+
+  /* Radius */
+  --grd-r-sm:6px; --grd-r-md:10px; --grd-r-lg:16px; --grd-r-xl:24px; --grd-r-pill:9999px;
+
+  /* Shadow (bertint hijau) */
+  --grd-shadow-sm:0 1px 3px rgba(8,24,48,.08),0 1px 2px rgba(8,24,48,.06);
+  --grd-shadow-md:0 4px 14px rgba(8,24,48,.10);
+  --grd-shadow-lg:0 14px 30px rgba(8,24,48,.14);
+  --grd-focus:0 0 0 3px color-mix(in srgb,var(--grd-primary) 38%,transparent);
+
+  /* Default brand (di-override oleh theme_vars.php dari Pengaturan) */
+  --grd-primary:#0E7490; --grd-primary-end:#155E75; --grd-accent:#06B6D4;
+  --grd-secondary:#0891B2; --grd-link:#0E6F88; --grd-link-hover:#134E63; --grd-scroll:#A5E8EF;
+  --grd-gradient:linear-gradient(100deg,var(--grd-primary) 0%,var(--grd-primary-end) 100%);
+}
+
+/* Mode gelap — selector lebih spesifik agar menang atas theme_vars.php */
+:root[data-theme="dark"]{
+  --grd-bg:#0E1513; --grd-surface:#16201C; --grd-surface-2:#1E2A24; --grd-border:#2A3631;
+  --grd-text:#E6EBE8; --grd-text-muted:#9FB0A8;
+  --grd-primary:#3FC0D4; --grd-primary-end:#2B9FB8;
+  --grd-link:#7FD0D9; --grd-link-hover:#A7E0E8;
+  --grd-shadow-sm:0 1px 3px rgba(0,0,0,.5);
+  --grd-shadow-md:0 4px 14px rgba(0,0,0,.55);
+  --grd-shadow-lg:0 14px 30px rgba(0,0,0,.6);
+}
+
+/* ============================================================
+   3. BASE
+   ============================================================ */
+html{scroll-behavior:smooth;}
+body,.font-primary{font-family:var(--grd-font-body)!important;}
+body{background-color:var(--grd-bg)!important;color:var(--grd-text);}
+h1,h2,h3,h4,h5,h6,.text-h1,.text-h2,.text-h3,.text-h4,.text-h5,.text-h6{
+  font-family:var(--grd-font-display)!important;font-weight:700;letter-spacing:-.01em;}
+a{transition:color .15s ease;}
+.text-link,a.hover\:text-link:hover,.hover\:text-link:hover{color:var(--grd-link)!important;}
+:where(button,a,input,select,textarea):focus-visible{outline:none;box-shadow:var(--grd-focus);border-radius:var(--grd-r-sm);}
+::selection{background:var(--grd-primary);color:#fff;}
+
+/* Scrollbar */
+*{scrollbar-width:thin;scrollbar-color:var(--grd-scroll) transparent;}
+::-webkit-scrollbar{width:10px;height:10px;}
+::-webkit-scrollbar-thumb{background:var(--grd-scroll);border-radius:var(--grd-r-pill);}
+::-webkit-scrollbar-thumb:hover{background:var(--grd-primary);}
+
+/* ============================================================
+   4. CHROME — Header / Nav / Topbar / Footer
+   ============================================================ */
+/* Header full-width + overlay hijau */
+.grd-topbg{width:100%;}
+.grd-topbg__overlay{position:absolute;inset:0;background:linear-gradient(180deg,color-mix(in srgb,var(--grd-primary) 42%,transparent) 0%,color-mix(in srgb,var(--grd-primary-end) 74%,transparent) 100%);}
+/* Dark mode: jangan jadikan top bar header hitam — tetap transparan di atas gambar.
+   Hanya target bar desktop (.lg:bg-transparent); drawer mobile (.bg-white) tetap solid. */
+:root[data-theme="dark"] .grd-topbg .lg\:bg-transparent{background-color:transparent!important;}
+
+/* Nav utama & mobile → gradien hijau, sticky */
+nav.bg-primary-100{background:var(--grd-gradient)!important;}
+nav.bg-primary-100.hidden.lg\:block{position:sticky;top:0;z-index:50;box-shadow:var(--grd-shadow-md);
+  border-bottom:3px solid var(--grd-accent);}
+nav.bg-primary-100 a:hover,nav.bg-primary-100 .hover\:bg-primary-200:hover{background:rgba(0,0,0,.18)!important;}
+nav.bg-primary-100 ul ul a:hover{background:var(--grd-primary)!important;color:#fff!important;}
+/* dropdown panel */
+nav.bg-primary-100 ul ul{border-radius:0 0 var(--grd-r-md) var(--grd-r-md);overflow:hidden;border-top:3px solid var(--grd-accent);}
+
+/* Topbar (category_menu) tombol */
+.btn,.btn-primary,.btn-accent,.btn-secondary{border-radius:var(--grd-r-pill)!important;font-weight:600;letter-spacing:.01em;transition:transform .15s ease,box-shadow .15s ease,filter .15s ease;}
+.btn-primary{background:var(--grd-gradient)!important;color:#fff!important;border:none!important;}
+.btn-accent{background:var(--grd-accent)!important;color:#fff!important;border:none!important;}
+.btn-primary:hover,.btn-accent:hover,.btn-secondary:hover{filter:brightness(1.06);box-shadow:var(--grd-shadow-md);transform:translateY(-1px);}
+
+/* Footer → hijau gelap */
+footer .bg-zinc-700{background:color-mix(in srgb,var(--grd-primary-end) 42%,#05101c)!important;border-top:3px solid var(--grd-accent);}
+:root[data-theme="dark"] footer .bg-zinc-700{background:#0A141F!important;}
+
+/* Loading spinner & ticker */
+.spinner-grow.bg-primary-100{background:var(--grd-primary)!important;}
+header marquee{border-radius:var(--grd-r-pill);}
+
+/* ============================================================
+   5. KOMPONEN
+   ============================================================ */
+/* Kartu & shadow global → lebih lembut */
+.shadow{box-shadow:var(--grd-shadow-sm)!important;}
+.shadow-lg{box-shadow:var(--grd-shadow-lg)!important;}
+.rounded-lg{border-radius:var(--grd-r-lg)!important;}
+
+/* Kartu artikel hover */
+.grd-article-card{background:var(--grd-surface);border-radius:var(--grd-r-lg);overflow:hidden;box-shadow:var(--grd-shadow-sm);transition:transform .2s var(--grd-ease,ease),box-shadow .2s ease;display:flex;flex-direction:column;}
+.grd-article-card:hover{transform:translateY(-4px);box-shadow:var(--grd-shadow-md);}
+.grd-article-card__media{aspect-ratio:16/9;overflow:hidden;background:var(--grd-surface-2);}
+.grd-article-card__media img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;}
+.grd-article-card:hover .grd-article-card__media img{transform:scale(1.05);}
+
+/* Judul section dengan garis "sayap" emas */
+.grd-section-title{font-family:var(--grd-font-display);font-weight:800;color:var(--grd-text);font-size:clamp(1.25rem, 1rem + 1.2vw, 1.75rem);position:relative;display:inline-block;}
+.grd-section-title::after{content:"";display:block;width:48px;height:3px;border-radius:var(--grd-r-pill);background:var(--grd-accent);margin-top:.5rem;}
+.grd-section-eyebrow{text-transform:uppercase;letter-spacing:.08em;font-size:.75rem;font-weight:700;color:var(--grd-accent);}
+
+/* Kartu akses cepat */
+.grd-quick{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;}
+@media(min-width:480px){.grd-quick{grid-template-columns:repeat(3,1fr);}}
+@media(min-width:768px){.grd-quick{grid-template-columns:repeat(4,1fr);gap:1rem;}}
+@media(min-width:1024px){.grd-quick{grid-template-columns:repeat(6,1fr);}}
+.grd-quick__item{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem;background:var(--grd-surface);border:1px solid var(--grd-border);border-radius:var(--grd-r-md);padding:1rem .5rem;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease;}
+.grd-quick__item:hover{transform:translateY(-3px);box-shadow:var(--grd-shadow-md);border-color:var(--grd-primary);}
+.grd-quick__icon{width:48px;height:48px;display:flex;align-items:center;justify-content:center;border-radius:var(--grd-r-md);background:var(--grd-surface-2);color:var(--grd-primary);font-size:1.3rem;}
+.grd-quick__title{font-weight:700;font-size:.8rem;color:var(--grd-text);line-height:1.2;}
+.grd-quick__sub{font-size:.7rem;color:var(--grd-text-muted);}
+
+/* Tile statistik */
+.grd-stat{background:var(--grd-surface);border:1px solid var(--grd-border);border-radius:var(--grd-r-md);padding:1rem;text-align:center;}
+.grd-stat__num{font-family:var(--grd-font-display);font-weight:800;font-size:1.6rem;font-variant-numeric:tabular-nums;color:var(--grd-primary);}
+.grd-stat__label{font-size:.78rem;color:var(--grd-text-muted);}
+
+/* Hitung mundur */
+.grd-countdown{display:flex;gap:.5rem;justify-content:center;}
+.grd-countdown__tile{min-width:62px;background:rgba(255,255,255,.12);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.18);border-radius:var(--grd-r-md);padding:.5rem .25rem;text-align:center;}
+.grd-countdown__num{font-family:var(--grd-font-display);font-weight:800;font-size:1.6rem;line-height:1;font-variant-numeric:tabular-nums;color:#fff;}
+.grd-countdown__label{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.85);}
+
+/* Kartu aparatur */
+.grd-official{background:var(--grd-surface);border:1px solid var(--grd-border);border-radius:var(--grd-r-lg);overflow:hidden;text-align:center;transition:transform .15s ease,box-shadow .15s ease;}
+.grd-official:hover{transform:translateY(-3px);box-shadow:var(--grd-shadow-md);}
+.grd-official__media{aspect-ratio:4/5;background:var(--grd-surface-2);overflow:hidden;}
+.grd-official__media img{width:100%;height:100%;object-fit:cover;}
+
+/* Pita / chip */
+.grd-chip{display:inline-flex;align-items:center;gap:.35rem;padding:.15rem .6rem;border-radius:var(--grd-r-pill);font-size:.7rem;font-weight:600;background:var(--grd-surface-2);color:var(--grd-text-muted);}
+
+/* Tombol dark toggle */
+.grd-darktoggle{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:var(--grd-r-pill);color:#fff;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);cursor:pointer;transition:background .15s ease;}
+.grd-darktoggle:hover{background:rgba(255,255,255,.3);}
+
+/* ============================================================
+   6. MODE GELAP — override utility umum
+   ============================================================ */
+:root[data-theme="dark"] .bg-gray-100,:root[data-theme="dark"] .bg-gray-50,:root[data-theme="dark"] .bg-gray-200{background-color:var(--grd-bg)!important;}
+:root[data-theme="dark"] .bg-white{background-color:var(--grd-surface)!important;}
+:root[data-theme="dark"] .text-gray-900,:root[data-theme="dark"] .text-gray-800,:root[data-theme="dark"] .text-gray-700,:root[data-theme="dark"] .text-gray-600{color:var(--grd-text)!important;}
+:root[data-theme="dark"] .text-gray-500,:root[data-theme="dark"] .text-gray-400{color:var(--grd-text-muted)!important;}
+:root[data-theme="dark"] .border,:root[data-theme="dark"] .border-gray-100,:root[data-theme="dark"] .border-gray-200,:root[data-theme="dark"] .border-gray-300{border-color:var(--grd-border)!important;}
+:root[data-theme="dark"] .divide-gray-100>*+*,:root[data-theme="dark"] .divide-gray-200>*+*{border-color:var(--grd-border)!important;}
+:root[data-theme="dark"] .grd-quick__item,:root[data-theme="dark"] .grd-stat,:root[data-theme="dark"] .grd-official{background:var(--grd-surface);border-color:var(--grd-border);}
+:root[data-theme="dark"] .grd-quick__icon{background:var(--grd-surface-2);color:var(--grd-primary);}
+:root[data-theme="dark"] input,:root[data-theme="dark"] select,:root[data-theme="dark"] textarea{background-color:var(--grd-surface-2)!important;color:var(--grd-text)!important;border-color:var(--grd-border)!important;}
+
+/* ============================================================
+   7. AKSESIBILITAS / MOTION
+   ============================================================ */
+.grd-skiplink{position:absolute;left:-999px;top:0;z-index:9999;background:var(--grd-primary);color:#fff;padding:.6rem 1rem;border-radius:0 0 var(--grd-r-md) 0;}
+.grd-skiplink:focus{left:0;}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important;}
+}
+
+/* ============================================================
+   8. SECTION BERANDA (Garuda)
+   ============================================================ */
+:root{--section-y:clamp(2.5rem, 1.5rem + 3vw, 4.5rem);--grd-container:75rem;}
+.grd-container{width:100%;max-width:var(--grd-container);margin-inline:auto;padding-inline:clamp(1rem, .5rem + 2vw, 2rem);}
+
+/* Section head helper */
+.grd-statistik__head,.grd-aparatur__head{margin-bottom:1.5rem;}
+
+/* Countdown band */
+.grd-countdown-band{background:var(--grd-gradient);color:#fff;margin-top:0;}
+.grd-countdown-band__inner{display:flex;flex-direction:column;gap:1rem;align-items:center;text-align:center;padding-block:1.25rem;}
+@media(min-width:768px){.grd-countdown-band__inner{flex-direction:row;justify-content:space-between;text-align:left;}}
+.grd-countdown-band .grd-section-eyebrow{color:var(--grd-accent);}
+.grd-countdown-band__title{font-family:var(--grd-font-display);font-weight:800;font-size:clamp(1.1rem, .9rem + 1vw, 1.6rem);color:#fff;margin:.1rem 0;}
+.grd-countdown-band__date{font-size:.85rem;color:rgba(255,255,255,.85);margin:0;}
+.grd-countdown__done{font-family:var(--grd-font-display);font-weight:800;font-size:1.3rem;color:#fff;}
+
+/* Grid kartu artikel (mandiri, tidak bergantung utility Tailwind yang ter-purge) */
+.grd-article-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;}
+@media(min-width:640px){.grd-article-grid{grid-template-columns:repeat(2,1fr);}}
+@media(min-width:1024px){.grd-article-grid{grid-template-columns:repeat(3,1fr);}}
+
+/* Baris judul section (eyebrow+judul kiri, aksi kanan) */
+.grd-section-bar{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+.grd-section-link{font-size:.85rem;font-weight:600;color:var(--grd-primary);white-space:nowrap;}
+.grd-section-link:hover{color:var(--grd-link-hover);}
+
+/* Kotak pencarian */
+.grd-search{position:relative;display:flex;align-items:center;max-width:280px;width:100%;}
+.grd-search i{position:absolute;left:.9rem;color:var(--grd-text-muted);font-size:.85rem;}
+.grd-search input{width:100%;height:44px;border:1px solid var(--grd-border);border-radius:var(--grd-r-pill);background:var(--grd-surface);color:var(--grd-text);padding:0 1rem 0 2.4rem;font-size:.9rem;}
+.grd-search input:focus{outline:none;border-color:var(--grd-primary);box-shadow:var(--grd-focus);}
+
+/* Kartu artikel — body */
+.grd-article-card__body{padding:1rem 1.1rem 1.2rem;display:flex;flex-direction:column;gap:.5rem;flex:1;}
+.grd-article-card__meta{display:flex;flex-wrap:wrap;gap:.25rem 1rem;font-size:.72rem;color:var(--grd-text-muted);list-style:none;margin:0;padding:0;}
+.grd-article-card__meta i{color:var(--grd-primary);margin-right:.25rem;}
+.grd-article-card__title{font-size:1.02rem;line-height:1.3;margin:0;}
+.grd-article-card__title a{color:var(--grd-text);}
+.grd-article-card__title a:hover{color:var(--grd-link);}
+.grd-article-card__excerpt{font-size:.85rem;color:var(--grd-text-muted);margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.grd-article-card__more{font-size:.8rem;font-weight:600;color:var(--grd-primary);margin-top:auto;}
+.grd-article-card__more:hover{color:var(--grd-link-hover);}
+
+/* Statistik Desa — kartu terpadu (total + rincian + tautan) */
+.grd-statistik{display:grid;grid-template-columns:1fr;gap:0;background:var(--grd-surface);border:1px solid var(--grd-border);border-radius:var(--grd-r-xl);overflow:hidden;box-shadow:var(--grd-shadow-sm);}
+@media(min-width:860px){.grd-statistik{grid-template-columns:260px 1fr;}}
+.grd-statistik__total{background:var(--grd-gradient);color:#fff;padding:2rem 1.5rem;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.25rem;}
+.grd-statistik__total-icon{font-size:1.8rem;opacity:.9;margin-bottom:.4rem;}
+.grd-statistik__total-num{font-family:var(--grd-font-display);font-weight:800;font-size:2.8rem;line-height:1;font-variant-numeric:tabular-nums;}
+.grd-statistik__total-label{font-size:.85rem;opacity:.9;}
+.grd-statistik__main{padding:1.5rem;}
+.grd-statistik__bar{margin-bottom:1.1rem;}
+.grd-statistik__tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-bottom:1.1rem;}
+@media(min-width:560px){.grd-statistik__tiles{grid-template-columns:repeat(4,1fr);}}
+.grd-stat__icon{display:block;font-size:1.2rem;color:var(--grd-primary);margin-bottom:.35rem;}
+.grd-statistik__links{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem;}
+@media(min-width:560px){.grd-statistik__links{grid-template-columns:repeat(4,1fr);}}
+.grd-statistik__link{display:flex;align-items:center;gap:.55rem;background:var(--grd-surface-2);border:1px solid var(--grd-border);border-radius:var(--grd-r-md);padding:.55rem .75rem;font-size:.8rem;font-weight:600;color:var(--grd-text);transition:border-color .15s,transform .15s,background .15s;}
+.grd-statistik__link:hover{border-color:var(--grd-primary);transform:translateY(-2px);color:var(--grd-link);background:var(--grd-surface);}
+.grd-statistik__link-icon{width:30px;height:30px;border-radius:var(--grd-r-pill);background:var(--grd-primary);color:#fff;display:flex;align-items:center;justify-content:center;flex:none;font-size:.8rem;}
+.grd-statistik__link-arrow{margin-left:auto;font-size:.65rem;color:var(--grd-text-muted);}
+
+/* Aparatur — grid seragam, Kepala Desa disorot */
+.grd-aparatur-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;}
+@media(min-width:640px){.grd-aparatur-grid{grid-template-columns:repeat(3,1fr);}}
+@media(min-width:1024px){.grd-aparatur-grid{grid-template-columns:repeat(5,1fr);}}
+.grd-official__media{position:relative;}
+.grd-official--kepala{outline:2px solid var(--grd-accent);outline-offset:-2px;}
+.grd-official__crown{position:absolute;top:.5rem;right:.5rem;width:26px;height:26px;border-radius:var(--grd-r-pill);background:var(--grd-accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;box-shadow:var(--grd-shadow-sm);}
+.grd-official__body{padding:.75rem;text-align:center;}
+.grd-official__body h4{font-size:.88rem;font-weight:700;margin:0 0 .15rem;color:var(--grd-text);line-height:1.25;}
+.grd-official__body p{font-size:.74rem;color:var(--grd-text-muted);margin:0;}
+.grd-official--kepala .grd-official__body p{color:var(--grd-accent-ink,#774E08);font-weight:700;}
+
+/* Layanan Mandiri */
+.grd-layanan{display:grid;grid-template-columns:1fr;gap:1.25rem;background:var(--grd-gradient);border-radius:var(--grd-r-xl);padding:1.75rem;box-shadow:var(--grd-shadow-md);align-items:center;}
+@media(min-width:900px){.grd-layanan{grid-template-columns:1.1fr 1fr 1.1fr;}}
+.grd-layanan__intro{color:#fff;}
+.grd-layanan__title{font-family:var(--grd-font-display);font-weight:800;font-size:1.8rem;color:#fff;margin:.2rem 0;}
+.grd-layanan__intro p{color:rgba(255,255,255,.85);font-size:.9rem;margin:0;}
+.grd-layanan__card{background:var(--grd-surface);border-radius:var(--grd-r-lg);padding:1.5rem;text-align:center;}
+.grd-layanan__logo{height:64px;margin:0 auto 1rem;}
+.grd-layanan__note{font-size:.8rem;color:var(--grd-text-muted);margin-bottom:.8rem;}
+.grd-layanan__btn{width:100%;justify-content:center;}
+.grd-layanan__info{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:var(--grd-r-lg);overflow:hidden;}
+.grd-layanan__info-img{width:100%;height:120px;object-fit:cover;}
+.grd-layanan__info-cta{display:flex;gap:.6rem;align-items:center;padding:.9rem 1.1rem;color:#fff;font-size:.85rem;}
+.grd-layanan__info-cta i{font-size:1.3rem;color:var(--grd-accent);}
+
+/* Perkembangan penduduk + Layanan surat */
+.grd-perkembangan{display:grid;grid-template-columns:1fr;gap:1.5rem;}
+@media(min-width:900px){.grd-perkembangan{grid-template-columns:3fr 2fr;}}
+.grd-perkembangan__periods{display:grid;grid-template-columns:1fr;gap:1rem;margin-top:1rem;}
+@media(min-width:560px){.grd-perkembangan__periods{grid-template-columns:1fr 1fr;}}
+.grd-perkembangan__period h4{font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--grd-text-muted);margin:0 0 .6rem;border-bottom:2px solid var(--grd-accent);display:inline-block;padding-bottom:.2rem;}
+.grd-perkembangan__tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem;}
+.grd-perkembangan__tiles--surat{margin-top:1rem;}
+.grd-mini-stat{background:var(--grd-surface);border:1px solid var(--grd-border);border-radius:var(--grd-r-md);padding:.8rem;text-align:center;}
+.grd-mini-stat i{color:var(--grd-primary);font-size:1rem;}
+.grd-mini-stat__num{display:block;font-family:var(--grd-font-display);font-weight:800;font-size:1.4rem;color:var(--grd-text);font-variant-numeric:tabular-nums;}
+.grd-mini-stat__label{font-size:.72rem;color:var(--grd-text-muted);}
+
+/* Galeri strip */
+.grd-galeri__head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:1.25rem;gap:1rem;}
+.grd-galeri__more{font-size:.85rem;font-weight:600;color:var(--grd-primary);white-space:nowrap;}
+.grd-galeri__more:hover{color:var(--grd-link-hover);}
+.grd-galeri__strip{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(240px,260px);justify-content:start;gap:1rem;overflow-x:auto;padding-bottom:.5rem;scroll-snap-type:x mandatory;}
+.grd-galeri__item{position:relative;border-radius:var(--grd-r-lg);overflow:hidden;aspect-ratio:4/3;scroll-snap-align:start;box-shadow:var(--grd-shadow-sm);}
+.grd-galeri__item img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;}
+.grd-galeri__item:hover img{transform:scale(1.06);}
+.grd-galeri__caption{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(8,24,48,.85));color:#fff;font-size:.78rem;font-weight:600;padding:1.5rem .8rem .6rem;}
+
+/* Chat WA mengambang */
+.grd-chat-wa{position:fixed;left:1.25rem;bottom:1.25rem;z-index:60;display:inline-flex;align-items:center;gap:.5rem;background:#25D366;color:#fff;border-radius:var(--grd-r-pill);padding:.7rem 1.1rem;box-shadow:var(--grd-shadow-lg);font-weight:600;font-size:.9rem;transition:transform .15s ease,filter .15s ease;}
+.grd-chat-wa:hover{transform:translateY(-2px);filter:brightness(1.05);color:#fff;}
+.grd-chat-wa i{font-size:1.3rem;}
+@media(max-width:560px){.grd-chat-wa__label{display:none;}.grd-chat-wa{padding:.8rem;}}
+
+/* Pagination */
+.grd-pagination{display:flex;gap:.35rem;align-items:center;}
+.grd-pagination a,.grd-pagination span,.grd-pagination strong{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:40px;padding:0 .6rem;border-radius:var(--grd-r-md);border:1px solid var(--grd-border);background:var(--grd-surface);color:var(--grd-text);font-size:.85rem;font-weight:600;text-decoration:none;}
+.grd-pagination a:hover{border-color:var(--grd-primary);color:var(--grd-link);}
+.grd-pagination .active,.grd-pagination strong,.grd-pagination .current{background:var(--grd-gradient);color:#fff;border-color:transparent;}
+
+/* ============================================================
+   9. WIDGET SIDEBAR (halaman dalam) — selaraskan ke tema hijau
+   ============================================================ */
+.sidebar .box{border-radius:var(--grd-r-lg);overflow:hidden;}
+.sidebar .box-header{background:var(--grd-surface)!important;color:var(--grd-primary)!important;border-bottom:2px solid var(--grd-border);padding:.85rem 1rem!important;}
+.sidebar .box-header:before{display:none!important;}
+.sidebar .box-title{color:var(--grd-primary)!important;font-family:var(--grd-font-display);font-weight:700;}
+.sidebar .box-title .fas,.sidebar .box-title .fa{color:var(--grd-accent)!important;}
+:root[data-theme="dark"] .sidebar .box-header{background:var(--grd-surface)!important;border-bottom-color:var(--grd-border);}
+
+/* Slider beranda — tinggi diatur dari Pengaturan Tema (--grd-slider-h) */
+.sliderx,.sliderx .owl-carousel,.sliderx .owl-stage-outer,.sliderx .owl-stage,.sliderx .owl-item,.sliderx figure,.sliderx img{height:var(--grd-slider-h,560px)!important;}
+.sliderx .owl-stage-outer{border-radius:var(--grd-r-lg);overflow:hidden;}
+.sliderx img{object-fit:cover;object-position:center;width:100%;}
+@media(max-width:1023px){.sliderx,.sliderx .owl-carousel,.sliderx .owl-stage-outer,.sliderx .owl-stage,.sliderx .owl-item,.sliderx figure,.sliderx img{height:clamp(240px, 42vw, 420px)!important;}}
+
+/* Section title margin saat dipakai di dalam bar */
+.grd-section-bar .grd-section-title{margin-bottom:0;}
+.grd-section-bar .grd-section-title::after{margin-top:.4rem;}
+
+/* ============================================================
+   10. UTILITAS SPACING (jaga-jaga ter-purge dari build esensi)
+   ============================================================ */
+.mt-1{margin-top:.25rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.mt-10{margin-top:2.5rem}.mt-12{margin-top:3rem}
+.mb-1{margin-bottom:.25rem}.mb-2{margin-bottom:.5rem}.mb-3{margin-bottom:.75rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}
+.pt-4{padding-top:1rem}.pt-6{padding-top:1.5rem}.pt-8{padding-top:2rem}
+.pb-2{padding-bottom:.5rem}.pb-6{padding-bottom:1.5rem}.pb-8{padding-bottom:2rem}.pb-10{padding-bottom:2.5rem}
+.py-5{padding-top:1.25rem;padding-bottom:1.25rem}.py-8{padding-top:2rem;padding-bottom:2rem}
+.my-5{margin-top:1.25rem;margin-bottom:1.25rem}.my-8{margin-top:2rem;margin-bottom:2rem}
+
+/* Ritme vertikal seragam antar section beranda */
+:root{--section-y:clamp(2.75rem, 2rem + 2vw, 4.5rem);}
+.grd-section{margin-top:var(--section-y);}
+
+/* ============================================================
+   11. NAVBAR DESKTOP — paksa 1 baris
+   ============================================================ */
+/* Lebarkan area nav + rapatkan jarak item agar muat satu baris */
+nav.bg-primary-100.hidden.lg\:block > .grd-container{max-width:88rem;}
+nav.bg-primary-100.hidden.lg\:block > .grd-container > ul{display:flex;flex-wrap:nowrap;justify-content:center;align-items:center;white-space:nowrap;}
+nav.bg-primary-100.hidden.lg\:block > .grd-container > ul > li{flex:0 0 auto;}
+nav.bg-primary-100.hidden.lg\:block > .grd-container > ul > li > a{padding:.85rem .55rem!important;font-size:.9rem;line-height:1.2;}
+nav.bg-primary-100.hidden.lg\:block > .grd-container > ul > li > a .fa-chevron-down{margin-left:.2rem!important;}
+/* sub-menu (dropdown) tetap normal, jangan ikut flex */
+nav.bg-primary-100.hidden.lg\:block > .grd-container > ul ul{display:block;white-space:normal;}
+@media(min-width:1280px){nav.bg-primary-100.hidden.lg\:block > .grd-container > ul > li > a{padding-left:.95rem;padding-right:.95rem;font-size:.95rem;}}
+
+/* >>> GARUDA TERNAMA 2 SIGNATURE >>> */
+.grd-section-eyebrow{color:var(--grd-link-hover);}
+.grd-official__crown{background:var(--grd-primary);}
+
+.grd-footer-info{background:var(--grd-gradient);color:#fff;padding:2.75rem 0;}
+.grd-footer-info__grid{display:grid;grid-template-columns:1fr;gap:1.75rem;align-items:start;}
+@media(min-width:900px){.grd-footer-info__grid{grid-template-columns:1fr 1.1fr 1fr;}}
+.grd-footer-info__identity{text-align:center;color:#fff;display:flex;flex-direction:column;align-items:center;}
+.grd-footer-info__logo{height:78px;margin:0 auto 1rem;}
+.grd-footer-info__name{font-family:var(--grd-font-display);font-weight:800;color:#fff;font-size:1.15rem;letter-spacing:.03em;margin:0 0 .6rem;line-height:1.25;}
+.grd-footer-info__addr{color:rgba(255,255,255,.85);font-size:.9rem;line-height:1.6;margin:0 0 .9rem;}
+.grd-footer-info__contact{list-style:none;padding:0;margin:0 0 1rem;display:flex;flex-direction:column;gap:.32rem;align-items:center;color:rgba(255,255,255,.92);font-size:.88rem;}
+.grd-footer-info__contact i{color:var(--grd-accent);width:1.2rem;text-align:center;}
+.grd-footer-info__social{list-style:none;padding:0;margin:0;display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;}
+.grd-footer-info__social a{display:inline-flex;width:38px;height:38px;border-radius:9999px;background:rgba(255,255,255,.15);color:#fff;align-items:center;justify-content:center;transition:background .15s ease,transform .15s ease;}
+.grd-footer-info__social a:hover{background:rgba(255,255,255,.3);color:#fff;transform:translateY(-2px);}
+.grd-footer-info .box{background:var(--grd-surface);border:none;border-radius:var(--grd-r-lg);overflow:hidden;box-shadow:var(--grd-shadow-md);margin:0;}
+.grd-footer-info .box-header{background:var(--grd-surface);padding:.7rem 1rem;border-bottom:1px solid var(--grd-border);}
+.grd-footer-info .box-header:before{display:none;}
+.grd-footer-info .box-title{color:var(--grd-primary);font-family:var(--grd-font-display);font-weight:700;font-size:.92rem;}
+.grd-footer-info .box-title i{color:var(--grd-accent);}
+.grd-footer-info .box-body{padding:.75rem;}
+.grd-footer-info #map_canvas,.grd-footer-info #map_wilayah{height:210px;border-radius:var(--grd-r-md);overflow:hidden;}
+.grd-footer-info .box-body .btn[data-bs-toggle],.grd-footer-info .modal{display:none!important;}
+.grd-footer-info .box-body .btn{background:var(--grd-gradient)!important;color:#fff!important;border:none!important;border-radius:var(--grd-r-pill)!important;}
+.grd-footer-info .box-body .btn a,.grd-footer-info .box-body .btn a:hover{color:#fff!important;}
+.grd-footer-info .text-link{color:var(--grd-link)!important;font-size:.82rem;}
+.grd-footer-info{margin-bottom:0;}
+.grd-footer-info + footer.footer{margin-top:0!important;}
+.grd-footer-info + footer.footer.mt-12{margin-top:0!important;}
+.grd-footer-info__col .box-body{display:flex;flex-direction:column;}
+.grd-footer-info__col .box-body .btn{margin-top:.75rem!important;}
+:root{--grd-font-display:'Trebuchet MS','Segoe UI',var(--grd-font-body);--grd-r-md:18px;--grd-r-lg:28px;--grd-r-xl:36px;--section-y:clamp(2.5rem,1.5rem + 3vw,4.6rem);}
+.grd-section-title{font-weight:800;}
+.grd-section-eyebrow{letter-spacing:.1em;}
+.grd-section-title::after{width:46px;height:9px;border-radius:9999px 9999px 5px 5px;background:var(--grd-accent);}
+nav.bg-primary-100.hidden.lg\:block{border-bottom:4px solid var(--grd-accent);}
+.grd-quick__item{border-radius:24px;}
+.grd-quick__icon{border-radius:20px 20px 20px 6px;background:linear-gradient(135deg,color-mix(in srgb,var(--grd-accent) 22%,#fff),#fff);}
+.grd-quick__item:hover{transform:translateY(-4px) rotate(-1.2deg);box-shadow:0 12px 24px color-mix(in srgb,var(--grd-accent) 24%,transparent);}
+.grd-statistik{border-radius:36px;}.grd-stat{border-radius:20px;}
+/* ARTIKEL: kartu sangat bulat, foto inset membulat, tombol selengkapnya berbentuk pil */
+.grd-article-card{border-radius:30px;border:1px solid var(--grd-border);}
+.grd-article-card__media{margin:.5rem .5rem 0;border-radius:24px;aspect-ratio:16/10;}
+.grd-article-card__more{align-self:flex-start;background:color-mix(in srgb,var(--grd-accent) 16%,#fff);color:var(--grd-link-hover);padding:.35rem .85rem;border-radius:9999px;font-weight:700;}
+.grd-article-card__more:hover{background:var(--grd-accent);color:#fff;}
+.grd-article-card__meta li:first-child{background:color-mix(in srgb,var(--grd-primary) 12%,#fff);padding:.1rem .55rem;border-radius:9999px;}
+/* APARATUR: potret squircle dengan sudut daun */
+.grd-official{border-radius:28px;}
+.grd-official__media{aspect-ratio:1;border-radius:24px 24px 24px 6px;margin:.5rem .5rem 0;overflow:hidden;}
+.grd-official--kepala{outline:3px solid var(--grd-accent);outline-offset:-3px;}
+.grd-official__body h4{font-size:.9rem;}
+.grd-galeri__item{border-radius:22px;overflow:hidden;}
+.btn-primary,.btn-accent{box-shadow:0 8px 18px color-mix(in srgb,var(--grd-accent) 30%,transparent);}
+/* >>> STATISTIK DESA (unik) >>> */
+.grd-statistik{display:grid;grid-template-columns:1fr;gap:1rem;background:var(--grd-surface-2);border:1px solid var(--grd-border);border-radius:42px;padding:1rem;box-shadow:var(--grd-shadow-md);}
+@media(min-width:860px){.grd-statistik{grid-template-columns:262px 1fr;align-items:start;}}
+.grd-statistik__total{background:var(--grd-gradient);color:rgba(255,255,255,1);padding:2.4rem 1.5rem;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;border-radius:34px 34px 34px 112px;box-shadow:var(--grd-shadow-lg);}
+@media(max-width:859px){.grd-statistik__total{border-radius:34px 112px 34px 34px;}}
+.grd-statistik__total-icon{font-size:1.9rem;width:64px;height:64px;border-radius:50% 50% 50% 16px;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;margin-bottom:.35rem;}
+.grd-statistik__total-num{font-family:var(--grd-font-display);font-weight:900;font-size:3rem;line-height:.92;letter-spacing:-.03em;}
+.grd-statistik__total-label{font-size:.8rem;text-transform:uppercase;letter-spacing:.15em;color:rgba(255,255,255,.85);}
+.grd-statistik__main{padding:.5rem .75rem;}
+.grd-statistik .grd-section-eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.2em;font-weight:700;color:var(--grd-accent);}
+.grd-statistik .grd-section-title{font-family:var(--grd-font-display);font-weight:900;font-size:1.55rem;color:var(--grd-text);margin:.1rem 0 0;letter-spacing:-.02em;}
+.grd-statistik__bar{margin-bottom:1.2rem;padding-left:.7rem;border-left:4px solid var(--grd-accent);}
+.grd-statistik__tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;margin-bottom:1.2rem;}
+@media(min-width:560px){.grd-statistik__tiles{grid-template-columns:repeat(4,1fr);}}
+.grd-stat{position:relative;background:var(--grd-surface);border:1px solid var(--grd-border);border-radius:22px;padding:1.5rem 1rem 1.1rem;text-align:center;overflow:hidden;}
+.grd-stat__icon{display:block;font-size:1.3rem;color:var(--grd-primary);margin-bottom:.2rem;position:relative;}
+.grd-stat__num{font-family:var(--grd-font-display);font-weight:900;font-size:1.75rem;color:var(--grd-primary);letter-spacing:-.03em;}
+.grd-stat__label{font-size:.76rem;color:var(--grd-text-muted);}
+.grd-stat::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:46px;height:5px;border-radius:0 0 7px 7px;background:var(--grd-gradient);}
+.grd-statistik__links{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem;}
+@media(min-width:560px){.grd-statistik__links{grid-template-columns:repeat(4,1fr);}}
+.grd-statistik__link{display:flex;align-items:center;gap:.6rem;background:var(--grd-surface);border:1px solid var(--grd-border);border-radius:999px;padding:.5rem .85rem .5rem .5rem;font-size:.8rem;font-weight:700;color:var(--grd-text);}
+.grd-statistik__link-icon{width:34px;height:34px;border-radius:15px 15px 15px 6px;background:var(--grd-gradient);color:rgba(255,255,255,1);display:flex;align-items:center;justify-content:center;flex:none;}
+.grd-statistik__link-arrow{margin-left:auto;font-size:.65rem;color:var(--grd-accent);}
+/* >>> LAYANAN MANDIRI (unik) >>> */
+.grd-layanan{display:grid;grid-template-columns:1fr;gap:1.5rem;background:var(--grd-gradient);border-radius:48px 48px 48px 14px;padding:2rem;box-shadow:var(--grd-shadow-lg);align-items:center;}
+@media(min-width:900px){.grd-layanan{grid-template-columns:1.05fr 1fr 1.05fr;}}
+.grd-layanan .grd-section-eyebrow{display:inline-block;color:rgba(255,255,255,1);background:rgba(255,255,255,.18);border-radius:var(--grd-r-pill);padding:.28rem .9rem;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;}
+.grd-layanan__intro{color:rgba(255,255,255,1);text-align:left;}
+.grd-layanan__title{font-family:var(--grd-font-display);font-weight:800;font-size:2.15rem;line-height:1.08;color:rgba(255,255,255,1);margin:.55rem 0 .45rem;}
+.grd-layanan__intro p{color:rgba(255,255,255,.85);font-size:.92rem;margin:0;max-width:30ch;}
+.grd-layanan__card{background:var(--grd-surface);border-radius:42px 42px 42px 10px;padding:1.85rem 1.5rem;text-align:center;box-shadow:var(--grd-shadow-md);}
+.grd-layanan__logo{height:76px;width:76px;object-fit:contain;padding:.7rem;margin:0 auto 1.15rem;border-radius:50%;background:color-mix(in srgb, var(--grd-primary) 12%, var(--grd-surface));box-shadow:inset 0 0 0 3px color-mix(in srgb, var(--grd-accent) 38%, transparent);}
+.grd-layanan__note{font-size:.8rem;color:var(--grd-text-muted);margin:.4rem 0 0;}
+.grd-layanan__btn{width:100%;justify-content:center;border-radius:var(--grd-r-pill);padding:.72rem 1.25rem;font-weight:700;letter-spacing:.01em;}
+.grd-layanan__info{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:10px 42px 42px 42px;overflow:hidden;}
+.grd-layanan__info-img{width:100%;height:132px;object-fit:cover;}
+.grd-layanan__info-cta{display:flex;gap:.75rem;align-items:center;padding:1rem 1.2rem;color:rgba(255,255,255,1);font-size:.85rem;}
+.grd-layanan__info-cta i{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:2.5rem;height:2.5rem;border-radius:50%;background:color-mix(in srgb, var(--grd-accent) 30%, transparent);color:rgba(255,255,255,1);font-size:1.2rem;}
+
+/* <<< GARUDA TERNAMA 2 SIGNATURE <<< */

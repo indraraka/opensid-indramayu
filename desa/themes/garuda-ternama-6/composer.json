@@ -1,0 +1,20 @@
+{
+    "name": "themes/garuda-ternama-6-rusa-emas",
+    "type": "library",
+    "version": "1.0.0",
+    "description": "Garuda Ternama 6 — Variasi Rusa Emas: emblem kepala rusa bermedali, elegan & berwibawa.",
+    "homepage": "https://opensid.or.id",
+    "license": "GPL-3.0-or-later",
+    "keywords": [
+        "Themes",
+        "OpenSID",
+        "Garuda",
+        "Garuda Ternama"
+    ],
+    "authors": [
+        {
+            "name": "Indra Kusumah",
+            "email": "indrakusumah1@gmail.com"
+        }
+    ]
+}
