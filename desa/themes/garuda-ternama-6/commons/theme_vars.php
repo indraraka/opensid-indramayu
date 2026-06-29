@@ -1,13 +1,13 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <?php
     // Warna dapat dikustomisasi dari Admin > Tema > Pengaturan (config.json)
-    $grd_primary       = theme_config('gradient_left', '#0E7490');
-    $grd_primary_end   = theme_config('gradient_right', '#155E75');
-    $grd_accent        = theme_config('bgtop', '#06B6D4');
-    $grd_secondary     = theme_config('warna_secondary', '#1E76C2');
-    $grd_link          = theme_config('textlink', '#0F613A');
-    $grd_link_hover    = theme_config('texthover', '#0C4E2F');
-    $grd_scroll        = theme_config('withscroll', '#C9E8D4');
+    $grd_primary       = theme_config('gradient_left', '#45618E');
+    $grd_primary_end   = theme_config('gradient_right', '#2E4568');
+    $grd_accent        = theme_config('bgtop', '#6E8CBC');
+    $grd_secondary     = theme_config('warna_secondary', '#54719E');
+    $grd_link          = theme_config('textlink', '#3A567E');
+    $grd_link_hover    = theme_config('texthover', '#263A57');
+    $grd_scroll        = theme_config('withscroll', '#D3DCEC');
     $slider_tinggi     = (int) theme_config('slider_tinggi', '560');
     if ($slider_tinggi < 200 || $slider_tinggi > 1000) {
         $slider_tinggi = 560;

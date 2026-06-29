@@ -2,7 +2,7 @@
     {
         "judul": "Warna Utama (Gradien Kiri)",
         "key": "gradient_left",
-        "value": "#2563EB",
+        "value": "#0C90DE",
         "placeholder": "Ketik atau pilih warna",
         "type": "color-picker",
         "keterangan": "Warna utama tema. Dipakai pada navigasi, tombol, dan aksen utama.",
@@ -12,7 +12,7 @@
     {
         "judul": "Warna Utama (Gradien Kanan)",
         "key": "gradient_right",
-        "value": "#1D4ED8",
+        "value": "#0A6AA0",
         "placeholder": "Ketik atau pilih warna",
         "type": "color-picker",
         "keterangan": "Warna akhir gradien. Dipadukan dengan warna utama pada navigasi & hero.",
@@ -22,7 +22,7 @@
     {
         "judul": "Warna Aksen",
         "key": "bgtop",
-        "value": "#22D3EE",
+        "value": "#38BDF8",
         "placeholder": "Ketik atau pilih warna",
         "type": "color-picker",
         "keterangan": "Warna aksen untuk garis judul section, badge, dan status aktif.",
@@ -42,7 +42,7 @@
     {
         "judul": "Warna Tautan",
         "key": "textlink",
-        "value": "#1D4ED8",
+        "value": "#0A6394",
         "placeholder": "Ketik atau pilih warna",
         "type": "color-picker",
         "keterangan": "Warna dasar tautan pada konten.",
@@ -52,7 +52,7 @@
     {
         "judul": "Warna Hover Tautan",
         "key": "texthover",
-        "value": "#1E3A8A",
+        "value": "#074568",
         "placeholder": "Ketik atau pilih warna",
         "type": "color-picker",
         "keterangan": "Warna tautan saat kursor di atasnya.",
@@ -62,7 +62,7 @@
     {
         "judul": "Warna Scrollbar",
         "key": "withscroll",
-        "value": "#BFDBFE",
+        "value": "#BAE6FD",
         "placeholder": "Ketik atau pilih warna",
         "type": "color-picker",
         "keterangan": "Warna batang scroll pada halaman.",

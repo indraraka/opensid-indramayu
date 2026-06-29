@@ -2,7 +2,7 @@
     {
         "judul": "Warna Utama (Gradien Kiri)",
         "key": "gradient_left",
-        "value": "#0F7C9C",
+        "value": "#45618E",
         "placeholder": "Ketik atau pilih warna",
         "type": "color-picker",
         "keterangan": "Warna utama tema. Dipakai pada navigasi, tombol, dan aksen utama.",
@@ -12,7 +12,7 @@
     {
         "judul": "Warna Utama (Gradien Kanan)",
         "key": "gradient_right",
-        "value": "#0B5F78",
+        "value": "#2E4568",
         "placeholder": "Ketik atau pilih warna",
         "type": "color-picker",
         "keterangan": "Warna akhir gradien. Dipadukan dengan warna utama pada navigasi & hero.",
@@ -22,7 +22,7 @@
     {
         "judul": "Warna Aksen",
         "key": "bgtop",
-        "value": "#0D9488",
+        "value": "#6E8CBC",
         "placeholder": "Ketik atau pilih warna",
         "type": "color-picker",
         "keterangan": "Warna aksen untuk garis judul section, badge, dan status aktif.",
@@ -32,7 +32,7 @@
     {
         "judul": "Warna Sekunder",
         "key": "warna_secondary",
-        "value": "#0891B2",
+        "value": "#54719E",
         "placeholder": "Ketik atau pilih warna",
         "type": "color-picker",
         "keterangan": "Warna sekunder untuk elemen informasi/tautan tertentu.",
@@ -42,7 +42,7 @@
     {
         "judul": "Warna Tautan",
         "key": "textlink",
-        "value": "#0B5F78",
+        "value": "#3A567E",
         "placeholder": "Ketik atau pilih warna",
         "type": "color-picker",
         "keterangan": "Warna dasar tautan pada konten.",
@@ -52,7 +52,7 @@
     {
         "judul": "Warna Hover Tautan",
         "key": "texthover",
-        "value": "#0A4A5E",
+        "value": "#263A57",
         "placeholder": "Ketik atau pilih warna",
         "type": "color-picker",
         "keterangan": "Warna tautan saat kursor di atasnya.",
@@ -62,7 +62,7 @@
     {
         "judul": "Warna Scrollbar",
         "key": "withscroll",
-        "value": "#A5E8EF",
+        "value": "#D3DCEC",
         "placeholder": "Ketik atau pilih warna",
         "type": "color-picker",
         "keterangan": "Warna batang scroll pada halaman.",

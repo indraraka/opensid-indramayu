@@ -2,7 +2,7 @@
     {
         "judul": "Warna Utama (Gradien Kiri)",
         "key": "gradient_left",
-        "value": "#1E40AF",
+        "value": "#4F46E5",
         "placeholder": "Ketik atau pilih warna",
         "type": "color-picker",
         "keterangan": "Warna utama tema. Dipakai pada navigasi, tombol, dan aksen utama.",
@@ -12,7 +12,7 @@
     {
         "judul": "Warna Utama (Gradien Kanan)",
         "key": "gradient_right",
-        "value": "#1A357F",
+        "value": "#312E81",
         "placeholder": "Ketik atau pilih warna",
         "type": "color-picker",
         "keterangan": "Warna akhir gradien. Dipadukan dengan warna utama pada navigasi & hero.",
@@ -22,7 +22,7 @@
     {
         "judul": "Warna Aksen",
         "key": "bgtop",
-        "value": "#38BDF8",
+        "value": "#818CF8",
         "placeholder": "Ketik atau pilih warna",
         "type": "color-picker",
         "keterangan": "Warna aksen untuk garis judul section, badge, dan status aktif.",
@@ -32,7 +32,7 @@
     {
         "judul": "Warna Sekunder",
         "key": "warna_secondary",
-        "value": "#3B82F6",
+        "value": "#6366F1",
         "placeholder": "Ketik atau pilih warna",
         "type": "color-picker",
         "keterangan": "Warna sekunder untuk elemen informasi/tautan tertentu.",
@@ -42,7 +42,7 @@
     {
         "judul": "Warna Tautan",
         "key": "textlink",
-        "value": "#1E3A8A",
+        "value": "#3730A3",
         "placeholder": "Ketik atau pilih warna",
         "type": "color-picker",
         "keterangan": "Warna dasar tautan pada konten.",
@@ -52,7 +52,7 @@
     {
         "judul": "Warna Hover Tautan",
         "key": "texthover",
-        "value": "#172554",
+        "value": "#252063",
         "placeholder": "Ketik atau pilih warna",
         "type": "color-picker",
         "keterangan": "Warna tautan saat kursor di atasnya.",
