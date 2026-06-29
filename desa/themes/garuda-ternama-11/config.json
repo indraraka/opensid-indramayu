@@ -1,0 +1,400 @@
+[
+    {
+        "judul": "Warna Utama (Gradien Kiri)",
+        "key": "gradient_left",
+        "value": "#2747C6",
+        "placeholder": "Ketik atau pilih warna",
+        "type": "color-picker",
+        "keterangan": "Warna utama tema. Dipakai pada navigasi, tombol, dan aksen utama.",
+        "options": null,
+        "readonly": false
+    },
+    {
+        "judul": "Warna Utama (Gradien Kanan)",
+        "key": "gradient_right",
+        "value": "#16276E",
+        "placeholder": "Ketik atau pilih warna",
+        "type": "color-picker",
+        "keterangan": "Warna akhir gradien. Dipadukan dengan warna utama pada navigasi & hero.",
+        "options": null,
+        "readonly": false
+    },
+    {
+        "judul": "Warna Aksen",
+        "key": "bgtop",
+        "value": "#5C76EE",
+        "placeholder": "Ketik atau pilih warna",
+        "type": "color-picker",
+        "keterangan": "Warna aksen untuk garis judul section, badge, dan status aktif.",
+        "options": null,
+        "readonly": false
+    },
+    {
+        "judul": "Warna Sekunder",
+        "key": "warna_secondary",
+        "value": "#3A57D8",
+        "placeholder": "Ketik atau pilih warna",
+        "type": "color-picker",
+        "keterangan": "Warna sekunder untuk elemen informasi/tautan tertentu.",
+        "options": null,
+        "readonly": false
+    },
+    {
+        "judul": "Warna Tautan",
+        "key": "textlink",
+        "value": "#1D3A9E",
+        "placeholder": "Ketik atau pilih warna",
+        "type": "color-picker",
+        "keterangan": "Warna dasar tautan pada konten.",
+        "options": null,
+        "readonly": false
+    },
+    {
+        "judul": "Warna Hover Tautan",
+        "key": "texthover",
+        "value": "#131F5A",
+        "placeholder": "Ketik atau pilih warna",
+        "type": "color-picker",
+        "keterangan": "Warna tautan saat kursor di atasnya.",
+        "options": null,
+        "readonly": false
+    },
+    {
+        "judul": "Warna Scrollbar",
+        "key": "withscroll",
+        "value": "#C6D2F7",
+        "placeholder": "Ketik atau pilih warna",
+        "type": "color-picker",
+        "keterangan": "Warna batang scroll pada halaman.",
+        "options": null,
+        "readonly": false
+    },
+    {
+        "judul": "Tampilan Judul Header",
+        "key": "tag_header",
+        "value": "0",
+        "type": "select",
+        "keterangan": "Penyesuaian Branding Desa ada di menu <code>Pengaturan -> Aplikasi</code>.",
+        "options": {
+            "1": "Tampilkan Branding Desa",
+            "0": "Tampilkan Nama Desa"
+        },
+        "attributes": {
+            "class": "select2"
+        },
+        "readonly": false
+    },
+    {
+        "judul": "Logo Berputar (Rotate)",
+        "key": "rotate_logo",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Animasi putar pada logo desa di header.",
+        "options": {
+            "1": "Aktif",
+            "0": "Nonaktif"
+        },
+        "attributes": {
+            "class": "select2"
+        },
+        "readonly": false
+    },
+    {
+        "judul": "Slider Beranda",
+        "key": "slider_beranda",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan slider/carousel gambar di beranda.",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": {
+            "class": "select2"
+        },
+        "readonly": false
+    },
+    {
+        "judul": "Tinggi Slider (Desktop)",
+        "key": "slider_tinggi",
+        "value": "520",
+        "type": "select",
+        "keterangan": "Tinggi banner/slider beranda pada layar desktop.",
+        "options": {
+            "420": "Pendek (420px)",
+            "520": "Sedang (520px)",
+            "560": "Tinggi (560px)",
+            "640": "Lebih Tinggi (640px)",
+            "720": "Penuh (720px)"
+        },
+        "attributes": {
+            "class": "select2"
+        },
+        "readonly": false
+    },
+    {
+        "judul": "Headline Artikel",
+        "key": "headline_beranda",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan artikel headline/unggulan di beranda.",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": {
+            "class": "select2"
+        },
+        "readonly": false
+    },
+    {
+        "judul": "Kartu Akses Cepat",
+        "key": "banner",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan grid kartu akses cepat (Data Wilayah, Galeri, Peta, dll.) di beranda.",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": {
+            "class": "select2"
+        },
+        "readonly": false
+    },
+    {
+        "judul": "Hitung Mundur Event",
+        "key": "event_countdown",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan blok hitung mundur perayaan/hari besar di header.",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": {
+            "class": "select2"
+        },
+        "readonly": false
+    },
+    {
+        "judul": "Statistik Desa",
+        "key": "statistik_beranda",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan ringkasan statistik penduduk di beranda.",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": {
+            "class": "select2"
+        },
+        "readonly": false
+    },
+    {
+        "judul": "Statistik Layanan Surat",
+        "key": "layanan_surat",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan statistik layanan surat & perkembangan penduduk di beranda.",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": {
+            "class": "select2"
+        },
+        "readonly": false
+    },
+    {
+        "judul": "Banner Layanan Mandiri",
+        "key": "layanan_mandiri_box",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan banner login Layanan Mandiri di beranda.",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": {
+            "class": "select2"
+        },
+        "readonly": false
+    },
+    {
+        "judul": "Showcase Aparatur",
+        "key": "aparatur_beranda",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan showcase Pemerintah Desa (Kepala Desa & perangkat) di beranda.",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": {
+            "class": "select2"
+        },
+        "readonly": false
+    },
+    {
+        "judul": "Strip Galeri",
+        "key": "galeri_strip",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan strip galeri foto di beranda.",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": {
+            "class": "select2"
+        },
+        "readonly": false
+    },
+    {
+        "judul": "Strip RSS Feed",
+        "key": "feed_strip",
+        "value": "0",
+        "type": "select",
+        "keterangan": "Tampilkan strip RSS feed eksternal di beranda (butuh URL feed di pengaturan).",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": {
+            "class": "select2"
+        },
+        "readonly": false
+    },
+    {
+        "judul": "Jadwal Sholat",
+        "key": "jadwal_shalat",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan jadwal sholat (butuh Kode Kota di bawah).",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": {
+            "class": "select2"
+        },
+        "readonly": false
+    },
+    {
+        "judul": "Doa Acak",
+        "key": "random_doa",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan doa harian acak bersama jadwal sholat.",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": {
+            "class": "select2"
+        },
+        "readonly": false
+    },
+    {
+        "judul": "Kode Kota (Jadwal Sholat)",
+        "key": "kode_kota",
+        "value": "1209",
+        "placeholder": "Mis. 1209 (Indramayu)",
+        "type": "input-text",
+        "keterangan": "Kode kota untuk API jadwal sholat (myQuran). Indramayu = 1209.",
+        "options": null,
+        "readonly": false
+    },
+    {
+        "judul": "Widget Cuaca",
+        "key": "cuaca",
+        "value": "0",
+        "type": "select",
+        "keterangan": "Tampilkan widget cuaca (butuh koneksi internet/API eksternal).",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": {
+            "class": "select2"
+        },
+        "readonly": false
+    },
+    {
+        "judul": "Tombol Chat WhatsApp",
+        "key": "chats",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan tombol chat WhatsApp mengambang (butuh nomor operator desa).",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": {
+            "class": "select2"
+        },
+        "readonly": false
+    },
+    {
+        "judul": "Layar Loading",
+        "key": "loader",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan animasi loading saat halaman pertama dimuat.",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": {
+            "class": "select2"
+        },
+        "readonly": false
+    },
+    {
+        "judul": "Peta & Identitas Footer",
+        "key": "footer_peta",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan peta lokasi kantor & wilayah + identitas desa di footer (muncul otomatis bila Titik Lokasi Kantor sudah di-set).",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": {
+            "class": "select2"
+        },
+        "readonly": false
+    },
+    {
+        "judul": "Hero — Label Atas",
+        "key": "hero_eyebrow",
+        "value": "Tari Topeng",
+        "placeholder": "mis. Desa Pesisir",
+        "type": "input-text",
+        "keterangan": "Teks label kecil di atas judul pada hero beranda.",
+        "options": null,
+        "readonly": false
+    },
+    {
+        "judul": "Hero — Judul",
+        "key": "hero_title",
+        "value": "",
+        "placeholder": "Kosongkan = \"Selamat Datang di [Nama Desa]\"",
+        "type": "input-text",
+        "keterangan": "Judul besar pada hero beranda. Kosongkan untuk otomatis \"Selamat Datang di [Nama Desa]\".",
+        "options": null,
+        "readonly": false
+    },
+    {
+        "judul": "Hero — Kalimat",
+        "key": "hero_sub",
+        "value": "Negeri seni — merawat Tari Topeng Dermayon yang adiluhung dari generasi ke generasi.",
+        "placeholder": "Kalimat ajakan singkat",
+        "type": "input-text",
+        "keterangan": "Kalimat di bawah judul pada hero beranda.",
+        "options": null,
+        "readonly": false
+    }
+]

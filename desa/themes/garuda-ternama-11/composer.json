@@ -1,0 +1,20 @@
+{
+    "name": "themes/garuda-ternama-11-tari-topeng",
+    "type": "library",
+    "version": "1.0.0",
+    "description": "Garuda Ternama 11 — Variasi Tari Topeng: topeng Dermayon berjamang emas dan sampur menari.",
+    "homepage": "https://opensid.or.id",
+    "license": "GPL-3.0-or-later",
+    "keywords": [
+        "Themes",
+        "OpenSID",
+        "Garuda",
+        "Garuda Ternama"
+    ],
+    "authors": [
+        {
+            "name": "Indra Kusumah",
+            "email": "indrakusumah1@gmail.com"
+        }
+    ]
+}
