@@ -1,22 +1,22 @@
-name: Deploy tema Garuda ke 7 desa
+name: Deploy tema Garuda ke 8 desa
 
-# Men-deploy tema Garuda (garuda + 9 varian ternama) ke ketujuh instalasi desa
-# di server (rsync via SSH, tanpa Docker). Berjalan otomatis saat berkas tema
-# berubah pada branch main, atau dapat dipicu manual (workflow_dispatch).
+# Men-deploy tema Garuda (base, garuda-blade, dan seluruh varian ternama —
+# bernomor maupun bernama) ke kedelapan instalasi desa di server (rsync via SSH,
+# tanpa Docker). Berjalan otomatis saat berkas tema berubah pada branch main,
+# atau dapat dipicu manual (workflow_dispatch).
 #
 # CAKUPAN SENGAJA DIBATASI PADA TEMA.
-# Ketujuh desa menjalankan EDISI OpenSID yang berbeda-beda (mis. karangsong/
-# pekandangan/plumbon punya modul bansos/stunting/DPT; dukuh punya modul
-# analisis). Men-sinkronkan seluruh pohon kode aplikasi lewat satu sumber akan
-# MENURUNKAN/merusak edisi yang berbeda. Tema bersifat mandiri & netral-versi,
-# sehingga aman dideploy ke semua desa. Perbaikan kode dilakukan terpisah
-# (lihat DEPLOY.md).
+# Kedelapan desa menjalankan EDISI OpenSID yang berbeda-beda. Men-sinkronkan
+# seluruh pohon kode aplikasi lewat satu sumber akan MENURUNKAN/merusak edisi
+# yang berbeda. Tema bersifat mandiri & netral-versi, sehingga aman dideploy ke
+# semua desa. Perbaikan kode dilakukan terpisah (lihat DEPLOY.md).
 
 on:
   push:
     branches: [main]
     paths:
       - 'desa/themes/garuda/**'
+      - 'desa/themes/garuda-blade/**'
       - 'desa/themes/garuda-ternama-*/**'
       - '.github/workflows/deploy.yml'
   workflow_dispatch:
@@ -40,6 +40,7 @@ jobs:
           - dukuh-indramayu.desa.id
           - pekandangan-indramayu.desa.id
           - plumbon-indramayu.desa.id
+          - telukagung-indramayu.desa.id
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -51,15 +52,20 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -p "${{ secrets.SSH_PORT }}" -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
 
+      # Daftar tema ditemukan dari isi repo, bukan daftar keras — dulu loop-nya
+      # hanya menyebut garuda-ternama-1..9 sehingga varian BERNAMA (mis.
+      # garuda-ternama-11-tari-topeng, yang justru dipakai Pekandangan) tak
+      # pernah ikut ter-deploy.
       - name: Rsync tema Garuda
         run: |
           DEST="domains/${{ matrix.domain }}/public_html/desa/themes"
           SSHCMD="ssh -i ~/.ssh/deploy_key -p ${{ secrets.SSH_PORT }} -o IdentitiesOnly=yes"
-          for t in garuda garuda-ternama-1 garuda-ternama-2 garuda-ternama-3 garuda-ternama-4 \
-                   garuda-ternama-5 garuda-ternama-6 garuda-ternama-7 garuda-ternama-8 garuda-ternama-9; do
+          for src in desa/themes/garuda desa/themes/garuda-blade desa/themes/garuda-ternama-*; do
+            [ -d "$src" ] || continue
+            t=$(basename "$src")
             echo "::group::rsync $t"
             rsync -az --delete -e "$SSHCMD" \
-              "desa/themes/$t/" \
+              "$src/" \
               "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:$DEST/$t/"
             echo "::endgroup::"
           done
@@ -75,8 +81,13 @@ jobs:
               true
             "
 
+      # Verifikasi menembak ORIGIN (--resolve), bukan CDN: karangsong berada di
+      # belakang tantangan anti-bot Hostinger CDN yang membalas 403 ke klien
+      # non-browser walaupun situsnya sehat — lewat CDN langkah ini gagal palsu.
       - name: Verifikasi situs merespons
         run: |
-          code=$(curl -s -o /dev/null -w '%{http_code}' -m 25 "https://${{ matrix.domain }}/")
-          echo "https://${{ matrix.domain }}/ -> HTTP $code"
+          code=$(curl -s -o /dev/null -w '%{http_code}' -m 25 \
+            --resolve "${{ matrix.domain }}:443:${{ secrets.SSH_HOST }}" \
+            "https://${{ matrix.domain }}/")
+          echo "https://${{ matrix.domain }}/ (origin) -> HTTP $code"
           test "$code" = "200"

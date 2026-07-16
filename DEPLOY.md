@@ -89,5 +89,26 @@ di ketujuh desa:
   & `constants.php` (gerbang versi + polyfill `MYSQLI_TYPE_INTERVAL`).
 - **Bugfix**: `donjo-app/config/config.php` (`sess_save_path` writable),
   `donjo-app/controllers/fweb/Statistik.php` (penjagaan `/data-statistik`).
+- **Bugfix (2026-07-16)**: `donjo-app/controllers/fmandiri/Surat.php:279` —
+  `'syarat' => $data_permohonan['syarat'] ?? []`. Kolom `permohonan_surat.syarat`
+  bertipe `text` **NOT NULL**, sedangkan key `syarat` hanya ada di POST bila surat
+  punya syarat dokumen. Mengajukan surat **tanpa syarat** (mis.
+  `sistem-surat-biodata-penduduk`) lewat Layanan Mandiri menyisipkan NULL →
+  `SQLSTATE[23000] 1048 Column 'syarat' cannot be null`. Model meng-cast
+  `syarat => 'json'`, jadi `[]` tersimpan sebagai `[]`. Terpasang di **8 desa 2606**.
 
 Backup berkas asli tersimpan di server: `~/opensid-fix-backup/<domain>/`.
+
+## Catatan lapangan
+
+- **Server menampung 10 situs desa, bukan 7.** Selain ketujuh di atas ada
+  `telukagung-indramayu.desa.id` (edisi 2606, ikut ditambal) serta
+  `pekandanganjaya-indramayu.desa.id` dan `singajaya-imy.desa.id` yang masih
+  **edisi 2504** dengan kode berbeda (`json_encode($data_permohonan['syarat'], ...)`)
+  — keduanya **tidak** kena bug `syarat` dan **tidak** ikut ditambal. Keduanya juga
+  belum ada di matrix `deploy.yml`.
+- **`karangsong-indramayu.desa.id` memakai tantangan anti-bot Hostinger CDN**
+  (`Server: hcdn`, halaman "Just a moment..."). `curl` polos menerima **403**
+  padahal origin sehat (`curl --resolve <domain>:443:<SSH_HOST>` → 200). Langkah
+  "Verifikasi situs merespons" di `deploy.yml` (`test "$code" = "200"`) akan
+  **gagal palsu** untuk desa ini — verifikasi lewat origin, bukan lewat CDN.

@@ -1,0 +1,320 @@
+[
+    {
+        "judul": "Warna Utama (gradien kiri)",
+        "key": "gradient_left",
+        "value": "#0E7490",
+        "type": "color-picker",
+        "keterangan": "Bagian dari palet tema (biru–tosca). Ubah untuk menyesuaikan warna.",
+        "options": null,
+        "attributes": null,
+        "readonly": false,
+        "link": false,
+        "group": "Warna"
+    },
+    {
+        "judul": "Warna Gradien Kanan",
+        "key": "gradient_right",
+        "value": "#155E75",
+        "type": "color-picker",
+        "keterangan": "Bagian dari palet tema (biru–tosca). Ubah untuk menyesuaikan warna.",
+        "options": null,
+        "attributes": null,
+        "readonly": false,
+        "link": false,
+        "group": "Warna"
+    },
+    {
+        "judul": "Warna Aksen",
+        "key": "bgtop",
+        "value": "#06B6D4",
+        "type": "color-picker",
+        "keterangan": "Bagian dari palet tema (biru–tosca). Ubah untuk menyesuaikan warna.",
+        "options": null,
+        "attributes": null,
+        "readonly": false,
+        "link": false,
+        "group": "Warna"
+    },
+    {
+        "judul": "Warna Sekunder",
+        "key": "warna_secondary",
+        "value": "#1E76C2",
+        "type": "color-picker",
+        "keterangan": "Bagian dari palet tema (biru–tosca). Ubah untuk menyesuaikan warna.",
+        "options": null,
+        "attributes": null,
+        "readonly": false,
+        "link": false,
+        "group": "Warna"
+    },
+    {
+        "judul": "Warna Tautan",
+        "key": "textlink",
+        "value": "#0C657C",
+        "type": "color-picker",
+        "keterangan": "Bagian dari palet tema (biru–tosca). Ubah untuk menyesuaikan warna.",
+        "options": null,
+        "attributes": null,
+        "readonly": false,
+        "link": false,
+        "group": "Warna"
+    },
+    {
+        "judul": "Warna Tautan (hover)",
+        "key": "texthover",
+        "value": "#094A5C",
+        "type": "color-picker",
+        "keterangan": "Bagian dari palet tema (biru–tosca). Ubah untuk menyesuaikan warna.",
+        "options": null,
+        "attributes": null,
+        "readonly": false,
+        "link": false,
+        "group": "Warna"
+    },
+    {
+        "judul": "Warna Scrollbar",
+        "key": "withscroll",
+        "value": "#A5E8EF",
+        "type": "color-picker",
+        "keterangan": "Bagian dari palet tema (biru–tosca). Ubah untuk menyesuaikan warna.",
+        "options": null,
+        "attributes": null,
+        "readonly": false,
+        "link": false,
+        "group": "Warna"
+    },
+    {
+        "judul": "Hero — Label Atas",
+        "key": "hero_eyebrow",
+        "value": "Website Resmi",
+        "type": "input-text",
+        "keterangan": "Teks label kecil di atas judul hero beranda.",
+        "options": null,
+        "attributes": null,
+        "readonly": false,
+        "link": false,
+        "group": "Hero"
+    },
+    {
+        "judul": "Hero — Judul",
+        "key": "hero_title",
+        "value": "",
+        "type": "input-text",
+        "keterangan": "Kosongkan = otomatis \"Selamat Datang di [Nama Desa]\".",
+        "options": null,
+        "attributes": null,
+        "readonly": false,
+        "link": false,
+        "group": "Hero"
+    },
+    {
+        "judul": "Hero — Kalimat",
+        "key": "hero_sub",
+        "value": "Pelayanan publik yang terbuka, transparan, dan dekat dengan warga.",
+        "type": "textarea",
+        "keterangan": "Kalimat ajakan di bawah judul hero.",
+        "options": null,
+        "attributes": null,
+        "readonly": false,
+        "link": false,
+        "group": "Hero"
+    },
+    {
+        "judul": "Hitung Mundur Event",
+        "key": "event_countdown",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan atau sembunyikan dari beranda/footer.",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": null,
+        "readonly": false,
+        "link": false,
+        "group": "Beranda"
+    },
+    {
+        "judul": "Slider Gambar Beranda",
+        "key": "slider_beranda",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan atau sembunyikan dari beranda/footer.",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": null,
+        "readonly": false,
+        "link": false,
+        "group": "Beranda"
+    },
+    {
+        "judul": "Headline Artikel",
+        "key": "headline_beranda",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan atau sembunyikan dari beranda/footer.",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": null,
+        "readonly": false,
+        "link": false,
+        "group": "Beranda"
+    },
+    {
+        "judul": "Kartu Akses Cepat",
+        "key": "banner",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan atau sembunyikan dari beranda/footer.",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": null,
+        "readonly": false,
+        "link": false,
+        "group": "Beranda"
+    },
+    {
+        "judul": "Statistik Desa",
+        "key": "statistik_beranda",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan atau sembunyikan dari beranda/footer.",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": null,
+        "readonly": false,
+        "link": false,
+        "group": "Beranda"
+    },
+    {
+        "judul": "Pemerintah Desa (Aparatur)",
+        "key": "aparatur_beranda",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan atau sembunyikan dari beranda/footer.",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": null,
+        "readonly": false,
+        "link": false,
+        "group": "Beranda"
+    },
+    {
+        "judul": "Banner Layanan Mandiri",
+        "key": "layanan_mandiri_box",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan atau sembunyikan dari beranda/footer.",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": null,
+        "readonly": false,
+        "link": false,
+        "group": "Beranda"
+    },
+    {
+        "judul": "Perkembangan Penduduk & Layanan Surat",
+        "key": "layanan_surat",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan atau sembunyikan dari beranda/footer.",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": null,
+        "readonly": false,
+        "link": false,
+        "group": "Beranda"
+    },
+    {
+        "judul": "Galeri Desa",
+        "key": "galeri_strip",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan atau sembunyikan dari beranda/footer.",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": null,
+        "readonly": false,
+        "link": false,
+        "group": "Beranda"
+    },
+    {
+        "judul": "Peta & Identitas di Footer",
+        "key": "footer_peta",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan atau sembunyikan dari beranda/footer.",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": null,
+        "readonly": false,
+        "link": false,
+        "group": "Beranda"
+    },
+    {
+        "judul": "Tombol Chat WhatsApp",
+        "key": "chats",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan atau sembunyikan dari beranda/footer.",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": null,
+        "readonly": false,
+        "link": false,
+        "group": "Beranda"
+    },
+    {
+        "judul": "Layar Loading",
+        "key": "loader",
+        "value": "1",
+        "type": "select",
+        "keterangan": "Tampilkan atau sembunyikan dari beranda/footer.",
+        "options": {
+            "1": "Tampilkan",
+            "0": "Sembunyikan"
+        },
+        "attributes": null,
+        "readonly": false,
+        "link": false,
+        "group": "Beranda"
+    },
+    {
+        "judul": "Tinggi Slider (Desktop)",
+        "key": "slider_tinggi",
+        "value": "560",
+        "type": "select",
+        "keterangan": "Tinggi slider gambar di layar desktop.",
+        "options": {
+            "420": "420px",
+            "520": "520px",
+            "560": "560px",
+            "640": "640px",
+            "720": "720px"
+        },
+        "attributes": null,
+        "readonly": false,
+        "link": false,
+        "group": "Beranda"
+    }
+]

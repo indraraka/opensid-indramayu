@@ -1,0 +1,17 @@
+{
+    "name": "themes/garuda-ternama-11-tari-topeng",
+    "type": "library",
+    "description": "Garuda Blade \u2014 Garuda Ternama 11 Tari Topeng (OpenSID 2606)",
+    "homepage": "https://github.com/OpenSID/tema-esensi",
+    "license": "GPL-3.0-or-later",
+    "keywords": [
+        "Themes",
+        "OpenSID"
+    ],
+    "authors": [
+        {
+            "name": "Diki Siswanto",
+            "email": "dickyachmady@gmail.com"
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "name": "themes/garuda-ternama-5-kebun-mangga",
+    "type": "library",
+    "description": "Garuda Blade \u2014 Garuda Ternama 5 Kebun Mangga (OpenSID 2606)",
+    "homepage": "https://github.com/OpenSID/tema-esensi",
+    "license": "GPL-3.0-or-later",
+    "keywords": [
+        "Themes",
+        "OpenSID"
+    ],
+    "authors": [
+        {
+            "name": "Diki Siswanto",
+            "email": "dickyachmady@gmail.com"
+        }
+    ]
+}
